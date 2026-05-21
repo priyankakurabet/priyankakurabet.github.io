@@ -1,0 +1,351 @@
+/* ============================================================
+   ANIMATIONS.CSS — Keyframes, Transitions, Motion Design
+   Priyanka Kurabet · Portfolio Design System
+   ============================================================ */
+
+/* ============================================================
+   KEYFRAMES
+   ============================================================ */
+
+/* Gentle vertical float */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+/* Slow float with rotation */
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(2deg);
+  }
+}
+
+/* Diagonal drift */
+@keyframes floatDiagonal {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  33% {
+    transform: translate(5px, -8px);
+  }
+  66% {
+    transform: translate(-3px, -12px);
+  }
+}
+
+/* Film grain jitter */
+@keyframes grain {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  10% {
+    transform: translate(-5%, -10%);
+  }
+  30% {
+    transform: translate(3%, -15%);
+  }
+  50% {
+    transform: translate(12%, 9%);
+  }
+  70% {
+    transform: translate(9%, 4%);
+  }
+  90% {
+    transform: translate(-1%, 7%);
+  }
+}
+
+/* Breathing pulse */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+/* CRT scanline sweep */
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+/* Glitch clip-path distortion */
+@keyframes glitch {
+  0% {
+    clip-path: inset(40% 0 61% 0);
+  }
+  20% {
+    clip-path: inset(92% 0 1% 0);
+  }
+  40% {
+    clip-path: inset(43% 0 1% 0);
+  }
+  60% {
+    clip-path: inset(25% 0 58% 0);
+  }
+  80% {
+    clip-path: inset(54% 0 7% 0);
+  }
+  100% {
+    clip-path: inset(58% 0 43% 0);
+  }
+}
+
+/* Fade in from below */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade in simple */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Scale-X line reveal */
+@keyframes revealLine {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* Counter fade in */
+@keyframes counterUp {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Shimmer / ambient glow pulse */
+@keyframes shimmer {
+  0%, 100% {
+    opacity: 0.06;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.1;
+    transform: scale(1.05);
+  }
+}
+
+/* Rotate slow (for decorative) */
+@keyframes rotateSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* ============================================================
+   PRELOADER ANIMATIONS
+   ============================================================ */
+.preloader {
+  clip-path: circle(100% at 50% 50%);
+  transition: clip-path 1s var(--ease-out-expo);
+}
+
+.preloader.loaded {
+  clip-path: circle(0% at 50% 50%);
+}
+
+
+/* ============================================================
+   FLOATING DECORATIVE ELEMENTS
+   ============================================================ */
+.hero-deco-line {
+  animation: floatSlow 6s var(--ease-in-out-smooth) infinite;
+}
+
+.hero-deco-line:nth-child(1) {
+  animation-duration: 7s;
+  animation-delay: 0s;
+}
+
+.hero-deco-line:nth-child(2) {
+  animation-duration: 8s;
+  animation-delay: -2s;
+}
+
+.hero-deco-line:nth-child(3) {
+  animation-duration: 9s;
+  animation-delay: -4s;
+}
+
+.hero-deco-dot {
+  animation: float 5s var(--ease-in-out-smooth) infinite;
+}
+
+.hero-deco-dot:nth-child(1) {
+  animation-duration: 6s;
+  animation-delay: -1s;
+}
+
+.hero-deco-dot:nth-child(2) {
+  animation-duration: 7s;
+  animation-delay: -3s;
+}
+
+.hero-deco-dot:nth-child(3) {
+  animation-duration: 5.5s;
+  animation-delay: -2s;
+}
+
+.hero-float-text {
+  animation: floatDiagonal 10s var(--ease-in-out-smooth) infinite;
+}
+
+.hero-float-text:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.hero-float-text:nth-child(2) {
+  animation-delay: -3s;
+  animation-duration: 12s;
+}
+
+.hero-float-text:nth-child(3) {
+  animation-delay: -6s;
+  animation-duration: 11s;
+}
+
+
+/* ============================================================
+   SCANLINES (System.exe)
+   ============================================================ */
+.scanlines {
+  animation: scanline 8s linear infinite;
+}
+
+
+/* ============================================================
+   INITIAL STATES FOR GSAP-ANIMATED ELEMENTS
+   GSAP handles the opacity and transform; we set visibility
+   so elements are paintable but GSAP controls reveal.
+   ============================================================ */
+.hero-subtitle,
+.hero-name .name-line,
+.hero-tagline,
+.hero-cta,
+.project-card,
+.about-heading .word,
+.skill-item,
+.contact-heading,
+.contact-body,
+.contact-link {
+  visibility: visible;
+}
+
+
+/* ============================================================
+   LINK / INTERACTIVE HOVER TRANSITIONS
+   ============================================================ */
+
+/* Smooth transition for all interactive elements */
+a,
+button,
+.project-card,
+.skill-item,
+.contact-link,
+.nav-links a {
+  transition-property: color, background-color, border-color, transform, opacity;
+  transition-duration: var(--duration-normal);
+  transition-timing-function: var(--ease-out-expo);
+}
+
+
+/* ============================================================
+   PORTRAIT GRAIN ANIMATION
+   ============================================================ */
+.portrait-grain {
+  animation: grain 0.5s steps(1) infinite;
+}
+
+
+/* ============================================================
+   PREFERS REDUCED MOTION
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .hero-deco-line,
+  .hero-deco-dot,
+  .hero-float-text {
+    animation: none !important;
+  }
+
+  .portrait-grain {
+    animation: none !important;
+  }
+
+  .grain-overlay {
+    animation: none !important;
+  }
+
+  .scanlines {
+    animation: none !important;
+  }
+
+  .preloader {
+    transition: opacity 0.3s ease !important;
+    clip-path: none !important;
+  }
+
+  .preloader.loaded {
+    opacity: 0;
+    clip-path: none !important;
+  }
+
+  .preloader-logo {
+    animation: fadeIn 0.3s ease forwards !important;
+  }
+
+  /* Simplify hover effects */
+  .project-card:hover .project-image-wrap img {
+    transform: none;
+  }
+
+  .cursor-ring.hover,
+  .cursor-ring.text {
+    transform: none;
+  }
+}
