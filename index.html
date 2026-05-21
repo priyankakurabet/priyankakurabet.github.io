@@ -39,14 +39,7 @@
     }
 
     body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      opacity: 0.055;
-      background-image: radial-gradient(circle at 1px 1px, rgba(17, 17, 17, 0.35) 1px, transparent 0);
-      background-size: 18px 18px;
-      mix-blend-mode: multiply;
+      content: none;
     }
 
     ::selection {
@@ -58,12 +51,9 @@
       position: fixed;
       inset: 0;
       pointer-events: none;
-      opacity: 0.035;
-      background-image:
-        radial-gradient(circle at 20% 20%, rgba(17, 17, 17, 0.03) 0, rgba(17, 17, 17, 0.03) 1px, transparent 1px),
-        radial-gradient(circle at 80% 30%, rgba(17, 17, 17, 0.025) 0, rgba(17, 17, 17, 0.025) 1px, transparent 1px),
-        radial-gradient(circle at 50% 70%, rgba(17, 17, 17, 0.02) 0, rgba(17, 17, 17, 0.02) 1px, transparent 1px);
-      background-size: 140px 140px, 180px 180px, 220px 220px;
+      opacity: 0.02;
+      background-image: radial-gradient(circle at 20% 20%, rgba(17, 17, 17, 0.025) 0, rgba(17, 17, 17, 0.025) 1px, transparent 1px);
+      background-size: 180px 180px;
     }
 
     .glow {
@@ -89,15 +79,13 @@
     .surface {
       background: var(--surface);
       border: 1px solid var(--line);
-      backdrop-filter: blur(18px);
-      box-shadow: var(--shadow);
+      box-shadow: 0 18px 42px rgba(40, 28, 19, 0.08);
     }
 
     .surface-strong {
       background: var(--surface-strong);
       border: 1px solid rgba(17, 17, 17, 0.08);
-      backdrop-filter: blur(18px);
-      box-shadow: var(--shadow);
+      box-shadow: 0 18px 42px rgba(40, 28, 19, 0.08);
     }
 
     .project-card {
@@ -106,7 +94,7 @@
 
     .project-card:hover {
       transform: translateY(-8px);
-      box-shadow: 0 34px 70px rgba(40, 28, 19, 0.16);
+      box-shadow: 0 22px 48px rgba(40, 28, 19, 0.12);
       border-color: rgba(127, 91, 62, 0.22);
     }
 
@@ -133,7 +121,12 @@
 
     .image-frame {
       background: linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.58));
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7), var(--shadow);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7), 0 14px 28px rgba(40, 28, 19, 0.08);
+    }
+
+    .content-section {
+      content-visibility: auto;
+      contain-intrinsic-size: 900px;
     }
 
     .image-cover {
@@ -261,7 +254,7 @@
   </section>
 
   <!-- Projects -->
-  <section id="work" class="px-4 sm:px-6 py-24 sm:py-28 border-t border-[var(--line)]/60">
+  <section id="work" class="content-section px-4 sm:px-6 py-24 sm:py-28 border-t border-[var(--line)]/60">
     <div class="max-w-7xl mx-auto">
 
       <div class="mb-20 fade-up">
@@ -381,7 +374,7 @@
   </section>
 
   <!-- About -->
-  <section id="about" class="px-4 sm:px-6 py-24 sm:py-28 border-t border-[var(--line)]/60 fade-up">
+  <section id="about" class="content-section px-4 sm:px-6 py-24 sm:py-28 border-t border-[var(--line)]/60 fade-up">
     <div class="max-w-6xl mx-auto grid lg:grid-cols-[0.9fr_1.1fr] gap-10 items-start">
       <div>
         <p class="section-chip mb-4">
@@ -413,7 +406,7 @@
   </section>
 
   <!-- Skills -->
-  <section id="skills" class="px-4 sm:px-6 py-24 sm:py-28 border-t border-[var(--line)]/60 fade-up">
+  <section id="skills" class="content-section px-4 sm:px-6 py-24 sm:py-28 border-t border-[var(--line)]/60 fade-up">
     <div class="max-w-6xl mx-auto">
       <p class="section-chip mb-4">
         Skills
@@ -438,7 +431,7 @@
   </section>
 
   <!-- Contact -->
-  <section id="contact" class="px-4 sm:px-6 py-24 sm:py-32 border-t border-[var(--line)]/60 fade-up">
+  <section id="contact" class="content-section px-4 sm:px-6 py-24 sm:py-32 border-t border-[var(--line)]/60 fade-up">
     <div class="max-w-6xl mx-auto surface-strong rounded-[2.5rem] px-6 sm:px-8 lg:px-12 py-12 sm:py-14 text-center">
       <p class="section-chip mb-5">
         Contact
