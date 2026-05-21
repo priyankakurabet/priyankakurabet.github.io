@@ -8,41 +8,116 @@
   <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap');
+
     html {
       scroll-behavior: smooth;
     }
 
+    :root {
+      --bg: #f5f0e8;
+      --surface: rgba(255, 255, 255, 0.72);
+      --surface-strong: rgba(255, 255, 255, 0.9);
+      --text: #111111;
+      --muted: rgba(17, 17, 17, 0.66);
+      --muted-strong: rgba(17, 17, 17, 0.82);
+      --line: rgba(17, 17, 17, 0.1);
+      --accent: #7f5b3e;
+      --accent-soft: #d8c3b0;
+      --accent-cool: #546e67;
+      --shadow: 0 30px 80px rgba(40, 28, 19, 0.12);
+    }
+
     body {
-      background: #0b0b0b;
-      color: white;
-      font-family: Arial, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(127, 91, 62, 0.12), transparent 30%),
+        radial-gradient(circle at top right, rgba(84, 110, 103, 0.12), transparent 28%),
+        linear-gradient(180deg, #f8f4ee 0%, #f2ebe1 100%);
+      color: var(--text);
+      font-family: 'Manrope', sans-serif;
       overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.055;
+      background-image: radial-gradient(circle at 1px 1px, rgba(17, 17, 17, 0.35) 1px, transparent 0);
+      background-size: 18px 18px;
+      mix-blend-mode: multiply;
+    }
+
+    ::selection {
+      background: rgba(127, 91, 62, 0.18);
+      color: var(--text);
     }
 
     .grain {
       position: fixed;
       inset: 0;
       pointer-events: none;
-      opacity: 0.03;
-      background-image: url('https://grainy-gradients.vercel.app/noise.svg');
+      opacity: 0.035;
+      background-image:
+        radial-gradient(circle at 20% 20%, rgba(17, 17, 17, 0.03) 0, rgba(17, 17, 17, 0.03) 1px, transparent 1px),
+        radial-gradient(circle at 80% 30%, rgba(17, 17, 17, 0.025) 0, rgba(17, 17, 17, 0.025) 1px, transparent 1px),
+        radial-gradient(circle at 50% 70%, rgba(17, 17, 17, 0.02) 0, rgba(17, 17, 17, 0.02) 1px, transparent 1px);
+      background-size: 140px 140px, 180px 180px, 220px 220px;
     }
 
     .glow {
       position: absolute;
-      width: 300px;
-      height: 300px;
-      background: rgba(255, 105, 180, 0.08);
+      width: 340px;
+      height: 340px;
+      background: rgba(127, 91, 62, 0.2);
       filter: blur(120px);
       border-radius: 999px;
     }
 
+    .section-chip {
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+
+    .display-font {
+      font-family: 'Fraunces', serif;
+    }
+
+    .surface {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      backdrop-filter: blur(18px);
+      box-shadow: var(--shadow);
+    }
+
+    .surface-strong {
+      background: var(--surface-strong);
+      border: 1px solid rgba(17, 17, 17, 0.08);
+      backdrop-filter: blur(18px);
+      box-shadow: var(--shadow);
+    }
+
     .project-card {
-      transition: 0.4s ease;
+      transition: transform 0.45s ease, box-shadow 0.45s ease, border-color 0.45s ease;
     }
 
     .project-card:hover {
-      transform: translateY(-6px);
-      background: rgba(255,255,255,0.05);
+      transform: translateY(-8px);
+      box-shadow: 0 34px 70px rgba(40, 28, 19, 0.16);
+      border-color: rgba(127, 91, 62, 0.22);
+    }
+
+    .soft-hover {
+      transition: transform 0.35s ease, background 0.35s ease, border-color 0.35s ease;
+    }
+
+    .soft-hover:hover {
+      transform: translateY(-2px);
+      border-color: rgba(127, 91, 62, 0.26);
+      background: rgba(255, 255, 255, 0.84);
     }
 
     .fade-up {
@@ -55,6 +130,45 @@
       opacity: 1;
       transform: translateY(0);
     }
+
+    .image-frame {
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.58));
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7), var(--shadow);
+    }
+
+    .image-cover {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .nav-link {
+      position: relative;
+      color: rgba(17, 17, 17, 0.74);
+      transition: color 0.25s ease;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -0.35rem;
+      width: 100%;
+      height: 1px;
+      transform: scaleX(0);
+      transform-origin: left;
+      background: var(--accent);
+      transition: transform 0.25s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--text);
+    }
+
+    .nav-link:hover::after {
+      transform: scaleX(1);
+    }
   </style>
 </head>
 
@@ -62,62 +176,82 @@
   <div class="grain"></div>
 
   <!-- Navbar -->
-  <nav class="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-black/30 border-b border-white/10">
-    <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
-      <h1 class="tracking-[0.3em] font-semibold text-white/90">PK</h1>
+  <nav class="fixed top-0 left-0 w-full z-50 px-4 sm:px-6 pt-4">
+    <div class="max-w-7xl mx-auto surface-strong rounded-full px-5 sm:px-7 py-4 flex justify-between items-center">
+      <div>
+        <a href="#top" class="tracking-[0.3em] font-extrabold text-sm text-[var(--text)]">PK</a>
+      </div>
 
-      <div class="flex gap-6 text-sm text-white/70">
-        <a href="#work" class="hover:text-white transition">Work</a>
-        <a href="#about" class="hover:text-white transition">About</a>
-        <a href="#skills" class="hover:text-white transition">Skills</a>
-        <a href="#contact" class="hover:text-white transition">Contact</a>
+      <div class="hidden md:flex gap-7 text-sm font-medium">
+        <a href="#work" class="nav-link">Work</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#contact" class="nav-link">Contact</a>
       </div>
     </div>
   </nav>
 
   <!-- Hero -->
-  <section class="min-h-screen flex items-center px-6 pt-24">
-    <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center w-full">
+  <section id="top" class="min-h-screen flex items-center px-4 sm:px-6 pt-32 pb-16">
+    <div class="max-w-7xl mx-auto grid lg:grid-cols-[1.15fr_0.85fr] gap-12 lg:gap-16 items-center w-full">
 
-      <div class="fade-up">
-        <p class="uppercase tracking-[0.3em] text-sm text-white/40 mb-6">
+      <div class="fade-up max-w-3xl">
+        <p class="section-chip mb-5">
           UI/UX & Interactive Experience Designer
         </p>
 
-        <h1 class="text-6xl md:text-8xl font-bold leading-[0.9] tracking-tight">
+        <h1 class="display-font text-6xl sm:text-7xl lg:text-8xl xl:text-9xl leading-[0.92] tracking-tight text-[var(--text)]">
           PRIYANKA
           <br />
-          <span class="text-white/70">KURABET</span>
+          <span class="text-[var(--accent)]">KURABET</span>
         </h1>
 
-        <p class="mt-8 text-lg text-white/60 max-w-xl leading-relaxed">
-          Designing immersive digital experiences through interaction,
-          storytelling, and thoughtful user experiences.
+        <p class="mt-8 text-lg sm:text-xl text-[var(--muted)] max-w-2xl leading-relaxed">
+          Designing immersive digital experiences through interaction, storytelling, and thoughtful user experiences.
         </p>
 
-        <div class="flex gap-5 mt-10 flex-wrap">
+        <div class="flex gap-4 mt-10 flex-wrap">
           <a href="#work"
-            class="px-7 py-3 rounded-full bg-white text-black hover:scale-105 transition duration-300">
+            class="px-7 py-3 rounded-full bg-[var(--text)] text-white soft-hover shadow-lg shadow-black/10">
             View Work
           </a>
 
           <a href="#contact"
-            class="px-7 py-3 rounded-full border border-white/15 text-white/80 hover:bg-white/5 transition duration-300">
+            class="px-7 py-3 rounded-full border border-[var(--line)] text-[var(--text)] soft-hover bg-white/40">
             Contact
           </a>
         </div>
+
+        <div class="mt-14 grid sm:grid-cols-3 gap-4 max-w-2xl">
+          <div class="surface rounded-[1.75rem] p-5">
+            <div class="text-sm text-[var(--muted)] mb-2">Focus</div>
+            <div class="font-semibold text-[var(--text)]">Interface systems, product thinking, and visual storytelling</div>
+          </div>
+          <div class="surface rounded-[1.75rem] p-5">
+            <div class="text-sm text-[var(--muted)] mb-2">Medium</div>
+            <div class="font-semibold text-[var(--text)]">Case studies, concept design, and interaction-led narratives</div>
+          </div>
+          <div class="surface rounded-[1.75rem] p-5">
+            <div class="text-sm text-[var(--muted)] mb-2">Open For</div>
+            <div class="font-semibold text-[var(--text)]">UI/UX, product design, and creative tech roles</div>
+          </div>
+        </div>
       </div>
 
-      <div class="relative flex justify-center fade-up">
+      <div class="relative flex justify-center lg:justify-end fade-up">
         <div class="glow"></div>
 
-        <div class="w-[340px] h-[480px] rounded-[2.5rem] overflow-hidden border border-white/10 bg-white/5 backdrop-blur-md shadow-2xl flex items-center justify-center">
-          <div class="text-center text-white/35 px-10">
-            <p class="uppercase tracking-[0.3em] text-xs mb-4">
-              Add Your Portrait Here
-            </p>
-            <p class="text-sm leading-relaxed">
-              Replace this section with your cinematic black & white portrait.
+        <div class="relative w-full max-w-[30rem] aspect-[4/5] rounded-[2.5rem] overflow-hidden image-frame border border-white/60">
+          <img src="assets/images/portrait.jpg" alt="Priyanka Kurabet portrait" class="image-cover grayscale contrast-110 brightness-95 hover:grayscale-0 transition duration-700" />
+
+          <div class="absolute inset-0 bg-gradient-to-t from-black/38 via-black/8 to-transparent"></div>
+
+          <div class="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
+            <div class="inline-flex items-center gap-2 rounded-full bg-white/85 px-4 py-2 text-xs font-semibold tracking-[0.18em] uppercase text-[var(--text)] shadow-lg">
+              Portrait Study
+            </div>
+            <p class="mt-4 max-w-xs text-sm sm:text-base text-white/90 leading-relaxed">
+              A cinematic black and white portrait anchoring the portfolio with a calm editorial presence.
             </p>
           </div>
         </div>
@@ -127,43 +261,49 @@
   </section>
 
   <!-- Projects -->
-  <section id="work" class="px-6 py-28 border-t border-white/5">
+  <section id="work" class="px-4 sm:px-6 py-24 sm:py-28 border-t border-[var(--line)]/60">
     <div class="max-w-7xl mx-auto">
 
       <div class="mb-20 fade-up">
-        <p class="uppercase tracking-[0.25em] text-sm text-white/40 mb-4">
+        <p class="section-chip mb-4">
           Selected Work
         </p>
 
-        <h2 class="text-5xl font-bold">Featured Projects</h2>
+        <h2 class="display-font text-5xl sm:text-6xl text-[var(--text)]">Featured Projects</h2>
+        <p class="mt-5 max-w-2xl text-lg text-[var(--muted)] leading-relaxed">
+          Three case studies that show how I think about product clarity, emotional pacing, and interfaces that feel memorable without losing usability.
+        </p>
       </div>
 
-      <div class="space-y-14">
+      <div class="space-y-10">
 
         <!-- Agoda -->
-        <div class="project-card rounded-[2.5rem] border border-white/10 bg-white/[0.03] overflow-hidden fade-up">
-          <div class="grid lg:grid-cols-2 gap-10 p-8 lg:p-12 items-center">
+        <div class="project-card rounded-[2.5rem] surface overflow-hidden fade-up">
+          <div class="grid lg:grid-cols-[0.95fr_1.05fr] gap-0 items-stretch">
 
-            <div class="h-[320px] rounded-[2rem] bg-gradient-to-br from-white/[0.08] to-white/[0.02] border border-white/5 flex items-center justify-center text-white/30 text-center px-8">
-              Add Agoda project thumbnail here
+            <div class="min-h-[320px] lg:min-h-[420px] p-5 sm:p-6 lg:p-7">
+              <div class="h-full rounded-[2rem] overflow-hidden border border-white/70 image-frame">
+                <img src="assets/images/agoda.jpg" alt="Agoda case study thumbnail" class="image-cover" />
+              </div>
             </div>
 
-            <div>
-              <h3 class="text-4xl font-bold mb-6">Agoda Case Study</h3>
+            <div class="p-7 sm:p-8 lg:p-12 flex flex-col justify-center">
+              <div class="text-xs uppercase tracking-[0.28em] text-[var(--muted)] mb-4">Travel Platform</div>
+              <h3 class="display-font text-4xl sm:text-5xl text-[var(--text)] mb-5">Agoda Case Study</h3>
 
-              <p class="text-white/60 leading-relaxed text-lg mb-8 max-w-xl">
+              <p class="text-[var(--muted)] leading-relaxed text-lg mb-8 max-w-xl">
                 A UX redesign focused on improving usability, booking flow, and overall travel experience.
               </p>
 
               <div class="flex flex-wrap gap-3 mb-8">
-                <span class="px-4 py-2 rounded-full border border-white/10 text-sm text-white/70">UX Case Study</span>
-                <span class="px-4 py-2 rounded-full border border-white/10 text-sm text-white/70">Product Thinking</span>
-                <span class="px-4 py-2 rounded-full border border-white/10 text-sm text-white/70">Travel Platform</span>
+                <span class="px-4 py-2 rounded-full border border-[var(--line)] text-sm text-[var(--muted-strong)] bg-white/50">UX Case Study</span>
+                <span class="px-4 py-2 rounded-full border border-[var(--line)] text-sm text-[var(--muted-strong)] bg-white/50">Product Thinking</span>
+                <span class="px-4 py-2 rounded-full border border-[var(--line)] text-sm text-[var(--muted-strong)] bg-white/50">Travel Platform</span>
               </div>
 
               <a href="https://www.behance.net/gallery/248068805/From-Search-to-Decision-Agoda-Booking-Flow"
                 target="_blank"
-                class="text-white/85 hover:text-white transition">
+                class="inline-flex items-center gap-2 font-semibold text-[var(--text)] hover:text-[var(--accent)] transition">
                 View Case Study →
               </a>
             </div>
@@ -171,59 +311,65 @@
         </div>
 
         <!-- Smart Budgeting -->
-        <div class="project-card rounded-[2.5rem] border border-white/10 bg-white/[0.03] overflow-hidden fade-up">
-          <div class="grid lg:grid-cols-2 gap-10 p-8 lg:p-12 items-center">
+        <div class="project-card rounded-[2.5rem] surface overflow-hidden fade-up">
+          <div class="grid lg:grid-cols-[1.05fr_0.95fr] gap-0 items-stretch">
 
-            <div class="h-[320px] rounded-[2rem] bg-gradient-to-br from-white/[0.08] to-white/[0.02] border border-white/5 flex items-center justify-center text-white/30 text-center px-8">
-              Add Smart Budgeting thumbnail here
-            </div>
+            <div class="p-7 sm:p-8 lg:p-12 flex flex-col justify-center order-2 lg:order-1">
+              <div class="text-xs uppercase tracking-[0.28em] text-[var(--muted)] mb-4">Finance UI</div>
+              <h3 class="display-font text-4xl sm:text-5xl text-[var(--text)] mb-5">Smart Budgeting</h3>
 
-            <div>
-              <h3 class="text-4xl font-bold mb-6">Smart Budgeting</h3>
-
-              <p class="text-white/60 leading-relaxed text-lg mb-8 max-w-xl">
+              <p class="text-[var(--muted)] leading-relaxed text-lg mb-8 max-w-xl">
                 A modern budgeting experience focused on smarter spending and intuitive financial management.
               </p>
 
               <div class="flex flex-wrap gap-3 mb-8">
-                <span class="px-4 py-2 rounded-full border border-white/10 text-sm text-white/70">Finance UI</span>
-                <span class="px-4 py-2 rounded-full border border-white/10 text-sm text-white/70">Mobile App</span>
-                <span class="px-4 py-2 rounded-full border border-white/10 text-sm text-white/70">UI/UX</span>
+                <span class="px-4 py-2 rounded-full border border-[var(--line)] text-sm text-[var(--muted-strong)] bg-white/50">Finance UI</span>
+                <span class="px-4 py-2 rounded-full border border-[var(--line)] text-sm text-[var(--muted-strong)] bg-white/50">Mobile App</span>
+                <span class="px-4 py-2 rounded-full border border-[var(--line)] text-sm text-[var(--muted-strong)] bg-white/50">UI/UX</span>
               </div>
 
               <a href="https://www.behance.net/gallery/249686577/Smart-Budgeting-Plan-Smarter-Live-Better"
                 target="_blank"
-                class="text-white/85 hover:text-white transition">
+                class="inline-flex items-center gap-2 font-semibold text-[var(--text)] hover:text-[var(--accent)] transition">
                 View Case Study →
               </a>
+            </div>
+
+            <div class="min-h-[320px] lg:min-h-[420px] p-5 sm:p-6 lg:p-7 order-1 lg:order-2">
+              <div class="h-full rounded-[2rem] overflow-hidden border border-white/70 image-frame">
+                <img src="assets/images/smart-budgeting.jpg" alt="Smart Budgeting thumbnail" class="image-cover" />
+              </div>
             </div>
           </div>
         </div>
 
         <!-- System.exe -->
-        <div class="project-card rounded-[2.5rem] border border-white/10 bg-white/[0.03] overflow-hidden fade-up">
-          <div class="grid lg:grid-cols-2 gap-10 p-8 lg:p-12 items-center">
+        <div class="project-card rounded-[2.5rem] surface overflow-hidden fade-up">
+          <div class="grid lg:grid-cols-[0.95fr_1.05fr] gap-0 items-stretch">
 
-            <div class="h-[320px] rounded-[2rem] bg-gradient-to-br from-white/[0.08] to-white/[0.02] border border-white/5 flex items-center justify-center text-white/30 text-center px-8">
-              Add SYSTEM.EXE thumbnail here
+            <div class="min-h-[320px] lg:min-h-[420px] p-5 sm:p-6 lg:p-7">
+              <div class="h-full rounded-[2rem] overflow-hidden border border-white/70 image-frame">
+                <img src="assets/images/system-exe.jpg" alt="SYSTEM.EXE thumbnail" class="image-cover" />
+              </div>
             </div>
 
-            <div>
-              <h3 class="text-4xl font-bold mb-6">SYSTEM.EXE</h3>
+            <div class="p-7 sm:p-8 lg:p-12 flex flex-col justify-center">
+              <div class="text-xs uppercase tracking-[0.28em] text-[var(--muted)] mb-4">Experimental UI</div>
+              <h3 class="display-font text-4xl sm:text-5xl text-[var(--text)] mb-5">SYSTEM.EXE</h3>
 
-              <p class="text-white/60 leading-relaxed text-lg mb-8 max-w-xl">
+              <p class="text-[var(--muted)] leading-relaxed text-lg mb-8 max-w-xl">
                 An experimental psychological ‘phone inside phone’ concept exploring suspense and interaction-driven storytelling.
               </p>
 
               <div class="flex flex-wrap gap-3 mb-8">
-                <span class="px-4 py-2 rounded-full border border-white/10 text-sm text-white/70">Experimental UI</span>
-                <span class="px-4 py-2 rounded-full border border-white/10 text-sm text-white/70">Interaction Design</span>
-                <span class="px-4 py-2 rounded-full border border-white/10 text-sm text-white/70">Psychological Puzzle</span>
+                <span class="px-4 py-2 rounded-full border border-[var(--line)] text-sm text-[var(--muted-strong)] bg-white/50">Experimental UI</span>
+                <span class="px-4 py-2 rounded-full border border-[var(--line)] text-sm text-[var(--muted-strong)] bg-white/50">Interaction Design</span>
+                <span class="px-4 py-2 rounded-full border border-[var(--line)] text-sm text-[var(--muted-strong)] bg-white/50">Psychological Puzzle</span>
               </div>
 
               <a href="https://www.behance.net/gallery/249762985/Systemexe"
                 target="_blank"
-                class="text-white/85 hover:text-white transition">
+                class="inline-flex items-center gap-2 font-semibold text-[var(--text)] hover:text-[var(--accent)] transition">
                 View Case Study →
               </a>
             </div>
@@ -235,74 +381,92 @@
   </section>
 
   <!-- About -->
-  <section id="about" class="px-6 py-28 border-t border-white/5 fade-up">
-    <div class="max-w-5xl mx-auto">
-      <p class="uppercase tracking-[0.25em] text-sm text-white/40 mb-4">
-        About
-      </p>
+  <section id="about" class="px-4 sm:px-6 py-24 sm:py-28 border-t border-[var(--line)]/60 fade-up">
+    <div class="max-w-6xl mx-auto grid lg:grid-cols-[0.9fr_1.1fr] gap-10 items-start">
+      <div>
+        <p class="section-chip mb-4">
+          About
+        </p>
 
-      <h2 class="text-5xl font-bold mb-10 leading-tight">
-        Creating digital experiences that feel immersive, emotional, and visually intentional.
-      </h2>
+        <h2 class="display-font text-5xl sm:text-6xl leading-tight text-[var(--text)]">
+          Creating digital experiences that feel immersive, emotional, and visually intentional.
+        </h2>
+      </div>
 
-      <p class="text-white/60 text-lg leading-relaxed max-w-3xl">
-        I’m a UI/UX and interactive experience designer focused on blending usability, storytelling, and visual emotion through modern digital experiences.
-      </p>
+      <div class="surface rounded-[2rem] p-7 sm:p-8 lg:p-10">
+        <p class="text-[var(--muted)] text-lg leading-relaxed max-w-3xl">
+          I’m a UI/UX and interactive experience designer focused on blending usability, storytelling, and visual emotion through modern digital experiences. I like work that feels calm at first glance and layered on a second read.
+        </p>
+
+        <div class="mt-8 grid sm:grid-cols-2 gap-4 text-sm">
+          <div class="rounded-[1.4rem] border border-[var(--line)] bg-white/60 p-5">
+            <div class="font-semibold text-[var(--text)] mb-1">Design approach</div>
+            <div class="text-[var(--muted)]">Minimal structure, clear hierarchy, and thoughtful interaction cues.</div>
+          </div>
+          <div class="rounded-[1.4rem] border border-[var(--line)] bg-white/60 p-5">
+            <div class="font-semibold text-[var(--text)] mb-1">Experience focus</div>
+            <div class="text-[var(--muted)]">Case studies, product thinking, motion, and concept storytelling.</div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- Skills -->
-  <section id="skills" class="px-6 py-28 border-t border-white/5 fade-up">
+  <section id="skills" class="px-4 sm:px-6 py-24 sm:py-28 border-t border-[var(--line)]/60 fade-up">
     <div class="max-w-6xl mx-auto">
-      <p class="uppercase tracking-[0.25em] text-sm text-white/40 mb-4">
+      <p class="section-chip mb-4">
         Skills
       </p>
 
-      <h2 class="text-5xl font-bold mb-14">Tools & Expertise</h2>
+      <h2 class="display-font text-5xl sm:text-6xl text-[var(--text)] mb-5">Tools & Expertise</h2>
+      <p class="max-w-2xl text-lg text-[var(--muted)] leading-relaxed mb-14">
+        A compact toolkit built for research, interface design, wireframing, and translating ideas into clean visual systems.
+      </p>
 
-      <div class="flex flex-wrap gap-4">
-        <div class="px-5 py-3 rounded-full border border-white/10">UI/UX Design</div>
-        <div class="px-5 py-3 rounded-full border border-white/10">Interaction Design</div>
-        <div class="px-5 py-3 rounded-full border border-white/10">Wireframing</div>
-        <div class="px-5 py-3 rounded-full border border-white/10">Figma</div>
-        <div class="px-5 py-3 rounded-full border border-white/10">HTML</div>
-        <div class="px-5 py-3 rounded-full border border-white/10">CSS</div>
-        <div class="px-5 py-3 rounded-full border border-white/10">Java</div>
-        <div class="px-5 py-3 rounded-full border border-white/10">DBMS</div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="surface rounded-[1.6rem] p-5 soft-hover">UI/UX Design</div>
+        <div class="surface rounded-[1.6rem] p-5 soft-hover">Interaction Design</div>
+        <div class="surface rounded-[1.6rem] p-5 soft-hover">Wireframing</div>
+        <div class="surface rounded-[1.6rem] p-5 soft-hover">Figma</div>
+        <div class="surface rounded-[1.6rem] p-5 soft-hover">HTML</div>
+        <div class="surface rounded-[1.6rem] p-5 soft-hover">CSS</div>
+        <div class="surface rounded-[1.6rem] p-5 soft-hover">Java</div>
+        <div class="surface rounded-[1.6rem] p-5 soft-hover">DBMS</div>
       </div>
     </div>
   </section>
 
   <!-- Contact -->
-  <section id="contact" class="px-6 py-32 border-t border-white/5 fade-up">
-    <div class="max-w-5xl mx-auto text-center">
-      <p class="uppercase tracking-[0.25em] text-sm text-white/40 mb-5">
+  <section id="contact" class="px-4 sm:px-6 py-24 sm:py-32 border-t border-[var(--line)]/60 fade-up">
+    <div class="max-w-6xl mx-auto surface-strong rounded-[2.5rem] px-6 sm:px-8 lg:px-12 py-12 sm:py-14 text-center">
+      <p class="section-chip mb-5">
         Contact
       </p>
 
-      <h2 class="text-5xl md:text-6xl font-bold leading-tight mb-8">
+      <h2 class="display-font text-5xl sm:text-6xl leading-tight mb-8 text-[var(--text)]">
         Let’s create something meaningful.
       </h2>
 
-      <p class="text-white/60 text-lg mb-12 max-w-2xl mx-auto">
+      <p class="text-[var(--muted)] text-lg mb-12 max-w-2xl mx-auto leading-relaxed">
         Open to UI/UX, product design, interaction design, and creative tech opportunities.
       </p>
 
       <div class="flex flex-wrap justify-center gap-5">
         <a href="https://www.linkedin.com/in/priyanka-kurabet-5b83aa2a7"
           target="_blank"
-          class="px-6 py-3 rounded-full border border-white/10 hover:bg-white/[0.05] transition">
+          class="px-6 py-3 rounded-full border border-[var(--line)] bg-white/60 soft-hover text-[var(--text)]">
           LinkedIn
         </a>
 
         <a href="https://www.behance.net/priyankakurabet14"
           target="_blank"
-          class="px-6 py-3 rounded-full border border-white/10 hover:bg-white/[0.05] transition">
+          class="px-6 py-3 rounded-full border border-[var(--line)] bg-white/60 soft-hover text-[var(--text)]">
           Behance
         </a>
 
         <a href="mailto:priyankakurabet141@gmail.com"
-          class="px-6 py-3 rounded-full border border-white/10 hover:bg-white/[0.05] transition">
+          class="px-6 py-3 rounded-full border border-[var(--line)] bg-white/60 soft-hover text-[var(--text)]">
           Email
         </a>
       </div>
