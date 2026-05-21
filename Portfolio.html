@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Priyanka Kurabet Portfolio</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #0b0b0b;
+      color: white;
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+    .grain {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.03;
+      background-image: url('https://grainy-gradients.vercel.app/noise.svg');
+    }
+
+    .glow {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      background: rgba(255, 105, 180, 0.08);
+      filter: blur(120px);
+      border-radius: 999px;
+    }
+
+    .project-card {
+      transition: 0.4s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      background: rgba(255,255,255,0.05);
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 1s ease;
+    }
+
+    .fade-up.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="grain"></div>
+
+  <!-- Navbar -->
+  <nav class="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-black/30 border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+      <h1 class="tracking-[0.3em] font-semibold text-white/90">PK</h1>
+
+      <div class="flex gap-6 text-sm text-white/70">
+        <a href="#work" class="hover:text-white transition">Work</a>
+        <a href="#about" class="hover:text-white transition">About</a>
+        <a href="#skills" class="hover:text-white transition">Skills</a>
+        <a href="#contact" class="hover:text-white transition">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="min-h-screen flex items-center px-6 pt-24">
+    <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center w-full">
+
+      <div class="fade-up">
+        <p class="uppercase tracking-[0.3em] text-sm text-white/40 mb-6">
+          UI/UX & Interactive Experience Designer
+        </p>
+
+        <h1 class="text-6xl md:text-8xl font-bold leading-[0.9] tracking-tight">
+          PRIYANKA
+          <br />
+          <span class="text-white/70">KURABET</span>
+        </h1>
+
+        <p class="mt-8 text-lg text-white/60 max-w-xl leading-relaxed">
+          Designing immersive digital experiences through interaction,
+          storytelling, and thoughtful user experiences.
+        </p>
+
+        <div class="flex gap-5 mt-10 flex-wrap">
+          <a href="#work"
+            class="px-7 py-3 rounded-full bg-white text-black hover:scale-105 transition duration-300">
+            View Work
+          </a>
+
+          <a href="#contact"
+            class="px-7 py-3 rounded-full border border-white/15 text-white/80 hover:bg-white/5 transition duration-300">
+            Contact
+          </a>
+        </div>
+      </div>
+
+      <div class="relative flex justify-center fade-up">
+        <div class="glow"></div>
+
+        <div class="w-[340px] h-[480px] rounded-[2.5rem] overflow-hidden border border-white/10 bg-white/5 backdrop-blur-md shadow-2xl flex items-center justify-center">
+          <div class="text-center text-white/35 px-10">
+            <p class="uppercase tracking-[0.3em] text-xs mb-4">
+              Add Your Portrait Here
+            </p>
+            <p class="text-sm leading-relaxed">
+              Replace this section with your cinematic black & white portrait.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="work" class="px-6 py-28 border-t border-white/5">
+    <div class="max-w-7xl mx-auto">
+
+      <div class="mb-20 fade-up">
+        <p class="uppercase tracking-[0.25em] text-sm text-white/40 mb-4">
+          Selected Work
+        </p>
+
+        <h2 class="text-5xl font-bold">Featured Projects</h2>
+      </div>
+
+      <div class="space-y-14">
+
+        <!-- Agoda -->
+        <div class="project-card rounded-[2.5rem] border border-white/10 bg-white/[0.03] overflow-hidden fade-up">
+          <div class="grid lg:grid-cols-2 gap-10 p-8 lg:p-12 items-center">
+
+            <div class="h-[320px] rounded-[2rem] bg-gradient-to-br from-white/[0.08] to-white/[0.02] border border-white/5 flex items-center justify-center text-white/30 text-center px-8">
+              Add Agoda project thumbnail here
+            </div>
+
+            <div>
+              <h3 class="text-4xl font-bold mb-6">Agoda Case Study</h3>
+
+              <p class="text-white/60 leading-relaxed text-lg mb-8 max-w-xl">
+                A UX redesign focused on improving usability, booking flow, and overall travel experience.
+              </p>
+
+              <div class="flex flex-wrap gap-3 mb-8">
+                <span class="px-4 py-2 rounded-full border border-white/10 text-sm text-white/70">UX Case Study</span>
+                <span class="px-4 py-2 rounded-full border border-white/10 text-sm text-white/70">Product Thinking</span>
+                <span class="px-4 py-2 rounded-full border border-white/10 text-sm text-white/70">Travel Platform</span>
+              </div>
+
+              <a href="https://www.behance.net/gallery/248068805/From-Search-to-Decision-Agoda-Booking-Flow"
+                target="_blank"
+                class="text-white/85 hover:text-white transition">
+                View Case Study →
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Smart Budgeting -->
+        <div class="project-card rounded-[2.5rem] border border-white/10 bg-white/[0.03] overflow-hidden fade-up">
+          <div class="grid lg:grid-cols-2 gap-10 p-8 lg:p-12 items-center">
+
+            <div class="h-[320px] rounded-[2rem] bg-gradient-to-br from-white/[0.08] to-white/[0.02] border border-white/5 flex items-center justify-center text-white/30 text-center px-8">
+              Add Smart Budgeting thumbnail here
+            </div>
+
+            <div>
+              <h3 class="text-4xl font-bold mb-6">Smart Budgeting</h3>
+
+              <p class="text-white/60 leading-relaxed text-lg mb-8 max-w-xl">
+                A modern budgeting experience focused on smarter spending and intuitive financial management.
+              </p>
+
+              <div class="flex flex-wrap gap-3 mb-8">
+                <span class="px-4 py-2 rounded-full border border-white/10 text-sm text-white/70">Finance UI</span>
+                <span class="px-4 py-2 rounded-full border border-white/10 text-sm text-white/70">Mobile App</span>
+                <span class="px-4 py-2 rounded-full border border-white/10 text-sm text-white/70">UI/UX</span>
+              </div>
+
+              <a href="https://www.behance.net/gallery/249686577/Smart-Budgeting-Plan-Smarter-Live-Better"
+                target="_blank"
+                class="text-white/85 hover:text-white transition">
+                View Case Study →
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- System.exe -->
+        <div class="project-card rounded-[2.5rem] border border-white/10 bg-white/[0.03] overflow-hidden fade-up">
+          <div class="grid lg:grid-cols-2 gap-10 p-8 lg:p-12 items-center">
+
+            <div class="h-[320px] rounded-[2rem] bg-gradient-to-br from-white/[0.08] to-white/[0.02] border border-white/5 flex items-center justify-center text-white/30 text-center px-8">
+              Add SYSTEM.EXE thumbnail here
+            </div>
+
+            <div>
+              <h3 class="text-4xl font-bold mb-6">SYSTEM.EXE</h3>
+
+              <p class="text-white/60 leading-relaxed text-lg mb-8 max-w-xl">
+                An experimental psychological ‘phone inside phone’ concept exploring suspense and interaction-driven storytelling.
+              </p>
+
+              <div class="flex flex-wrap gap-3 mb-8">
+                <span class="px-4 py-2 rounded-full border border-white/10 text-sm text-white/70">Experimental UI</span>
+                <span class="px-4 py-2 rounded-full border border-white/10 text-sm text-white/70">Interaction Design</span>
+                <span class="px-4 py-2 rounded-full border border-white/10 text-sm text-white/70">Psychological Puzzle</span>
+              </div>
+
+              <a href="https://www.behance.net/gallery/249762985/Systemexe"
+                target="_blank"
+                class="text-white/85 hover:text-white transition">
+                View Case Study →
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="px-6 py-28 border-t border-white/5 fade-up">
+    <div class="max-w-5xl mx-auto">
+      <p class="uppercase tracking-[0.25em] text-sm text-white/40 mb-4">
+        About
+      </p>
+
+      <h2 class="text-5xl font-bold mb-10 leading-tight">
+        Creating digital experiences that feel immersive, emotional, and visually intentional.
+      </h2>
+
+      <p class="text-white/60 text-lg leading-relaxed max-w-3xl">
+        I’m a UI/UX and interactive experience designer focused on blending usability, storytelling, and visual emotion through modern digital experiences.
+      </p>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="px-6 py-28 border-t border-white/5 fade-up">
+    <div class="max-w-6xl mx-auto">
+      <p class="uppercase tracking-[0.25em] text-sm text-white/40 mb-4">
+        Skills
+      </p>
+
+      <h2 class="text-5xl font-bold mb-14">Tools & Expertise</h2>
+
+      <div class="flex flex-wrap gap-4">
+        <div class="px-5 py-3 rounded-full border border-white/10">UI/UX Design</div>
+        <div class="px-5 py-3 rounded-full border border-white/10">Interaction Design</div>
+        <div class="px-5 py-3 rounded-full border border-white/10">Wireframing</div>
+        <div class="px-5 py-3 rounded-full border border-white/10">Figma</div>
+        <div class="px-5 py-3 rounded-full border border-white/10">HTML</div>
+        <div class="px-5 py-3 rounded-full border border-white/10">CSS</div>
+        <div class="px-5 py-3 rounded-full border border-white/10">Java</div>
+        <div class="px-5 py-3 rounded-full border border-white/10">DBMS</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="px-6 py-32 border-t border-white/5 fade-up">
+    <div class="max-w-5xl mx-auto text-center">
+      <p class="uppercase tracking-[0.25em] text-sm text-white/40 mb-5">
+        Contact
+      </p>
+
+      <h2 class="text-5xl md:text-6xl font-bold leading-tight mb-8">
+        Let’s create something meaningful.
+      </h2>
+
+      <p class="text-white/60 text-lg mb-12 max-w-2xl mx-auto">
+        Open to UI/UX, product design, interaction design, and creative tech opportunities.
+      </p>
+
+      <div class="flex flex-wrap justify-center gap-5">
+        <a href="https://www.linkedin.com/in/priyanka-kurabet-5b83aa2a7"
+          target="_blank"
+          class="px-6 py-3 rounded-full border border-white/10 hover:bg-white/[0.05] transition">
+          LinkedIn
+        </a>
+
+        <a href="https://www.behance.net/priyankakurabet14"
+          target="_blank"
+          class="px-6 py-3 rounded-full border border-white/10 hover:bg-white/[0.05] transition">
+          Behance
+        </a>
+
+        <a href="mailto:priyankakurabet141@gmail.com"
+          class="px-6 py-3 rounded-full border border-white/10 hover:bg-white/[0.05] transition">
+          Email
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    });
+
+    document.querySelectorAll('.fade-up').forEach((el) => {
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
