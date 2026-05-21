@@ -3,427 +3,324 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Priyanka Kurabet — UI/UX & Interactive Experience Designer</title>
-  <meta name="description" content="Portfolio of Priyanka Kurabet — a UI/UX and interactive experience designer crafting immersive digital experiences through interaction, storytelling, and thoughtful design." />
-  <meta name="theme-color" content="#050505" />
+  <title>Priyanka Kurabet Portfolio</title>
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Priyanka Kurabet — Portfolio" />
-  <meta property="og:description" content="UI/UX & Interactive Experience Designer — Immersive digital experiences through interaction, storytelling, and design." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="assets/images/portrait.jpg" />
+  <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
 
-  <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/base.css" />
-  <link rel="stylesheet" href="css/layout.css" />
-  <link rel="stylesheet" href="css/components.css" />
-  <link rel="stylesheet" href="css/animations.css" />
-  <link rel="stylesheet" href="css/sections.css" />
+    body {
+      background: #0b0b0b;
+      color: white;
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+    .grain {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.03;
+      background-image: url('https://grainy-gradients.vercel.app/noise.svg');
+    }
+
+    .glow {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      background: rgba(255, 105, 180, 0.08);
+      filter: blur(120px);
+      border-radius: 999px;
+    }
+
+    .project-card {
+      transition: 0.4s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      background: rgba(255,255,255,0.05);
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 1s ease;
+    }
+
+    .fade-up.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
 </head>
 
 <body>
+  <div class="grain"></div>
 
-  <!-- ═══════════════════════════════════════════ -->
-  <!-- PRELOADER                                    -->
-  <!-- ═══════════════════════════════════════════ -->
-  <div class="preloader" aria-hidden="true">
-    <div class="preloader-content">
-      <div class="preloader-logo">PK</div>
-      <div class="preloader-counter">
-        <span class="counter-number">0</span><span class="counter-percent">%</span>
+  <!-- Navbar -->
+  <nav class="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-black/30 border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+      <h1 class="tracking-[0.3em] font-semibold text-white/90">PK</h1>
+
+      <div class="flex gap-6 text-sm text-white/70">
+        <a href="#work" class="hover:text-white transition">Work</a>
+        <a href="#about" class="hover:text-white transition">About</a>
+        <a href="#skills" class="hover:text-white transition">Skills</a>
+        <a href="#contact" class="hover:text-white transition">Contact</a>
       </div>
-    </div>
-  </div>
-
-  <!-- ═══════════════════════════════════════════ -->
-  <!-- CUSTOM CURSOR                                -->
-  <!-- ═══════════════════════════════════════════ -->
-  <div class="custom-cursor" aria-hidden="true">
-    <div class="cursor-dot"></div>
-    <div class="cursor-ring"></div>
-  </div>
-
-  <!-- ═══════════════════════════════════════════ -->
-  <!-- GRAIN OVERLAY                                -->
-  <!-- ═══════════════════════════════════════════ -->
-  <div class="grain-overlay" aria-hidden="true"></div>
-
-  <!-- ═══════════════════════════════════════════ -->
-  <!-- NAVIGATION                                   -->
-  <!-- ═══════════════════════════════════════════ -->
-  <nav class="nav-main" role="navigation" aria-label="Main navigation">
-    <div class="nav-container">
-      <a href="#hero" class="nav-logo" data-cursor="pointer" aria-label="Home">PK</a>
-
-      <div class="nav-links">
-        <a href="#work" data-section="work" data-cursor="pointer">
-          <span class="link-text">Work</span>
-          <span class="link-line"></span>
-        </a>
-        <a href="#about" data-section="about" data-cursor="pointer">
-          <span class="link-text">About</span>
-          <span class="link-line"></span>
-        </a>
-        <a href="#skills" data-section="skills" data-cursor="pointer">
-          <span class="link-text">Skills</span>
-          <span class="link-line"></span>
-        </a>
-        <a href="#contact" data-section="contact" data-cursor="pointer">
-          <span class="link-text">Contact</span>
-          <span class="link-line"></span>
-        </a>
-      </div>
-
-      <button class="nav-menu-btn" aria-label="Toggle menu" data-cursor="pointer">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
     </div>
   </nav>
 
-  <!-- Mobile Overlay Menu -->
-  <div class="nav-overlay" aria-hidden="true">
-    <a href="#work" data-section="work">Work</a>
-    <a href="#about" data-section="about">About</a>
-    <a href="#skills" data-section="skills">Skills</a>
-    <a href="#contact" data-section="contact">Contact</a>
-  </div>
+  <!-- Hero -->
+  <section class="min-h-screen flex items-center px-6 pt-24">
+    <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center w-full">
 
-  <!-- ═══════════════════════════════════════════ -->
-  <!-- MAIN CONTENT                                 -->
-  <!-- ═══════════════════════════════════════════ -->
-  <main class="main-content">
+      <div class="fade-up">
+        <p class="uppercase tracking-[0.3em] text-sm text-white/40 mb-6">
+          UI/UX & Interactive Experience Designer
+        </p>
 
-    <!-- ─────────────────────────────────────── -->
-    <!-- HERO SECTION                             -->
-    <!-- ─────────────────────────────────────── -->
-    <section id="hero" class="section">
-      <div class="hero-inner">
+        <h1 class="text-6xl md:text-8xl font-bold leading-[0.9] tracking-tight">
+          PRIYANKA
+          <br />
+          <span class="text-white/70">KURABET</span>
+        </h1>
 
-        <!-- Left: Text Content -->
-        <div class="hero-content">
-          <p class="hero-subtitle">UI/UX &amp; Interactive Experience Designer</p>
+        <p class="mt-8 text-lg text-white/60 max-w-xl leading-relaxed">
+          Designing immersive digital experiences through interaction,
+          storytelling, and thoughtful user experiences.
+        </p>
 
-          <h1 class="hero-name">
-            <span class="name-line">PRIYANKA</span>
-            <span class="name-line">KURABET</span>
-          </h1>
+        <div class="flex gap-5 mt-10 flex-wrap">
+          <a href="#work"
+            class="px-7 py-3 rounded-full bg-white text-black hover:scale-105 transition duration-300">
+            View Work
+          </a>
 
-          <p class="hero-tagline" data-cursor="text">
-            Designing immersive digital experiences through interaction,
-            storytelling, and thoughtful user experiences.
-          </p>
+          <a href="#contact"
+            class="px-7 py-3 rounded-full border border-white/15 text-white/80 hover:bg-white/5 transition duration-300">
+            Contact
+          </a>
+        </div>
+      </div>
 
-          <div class="hero-cta">
-            <a href="#work" class="btn-primary" data-cursor="pointer">View Work</a>
-            <a href="#contact" class="btn-outline" data-cursor="pointer">Contact</a>
+      <div class="relative flex justify-center fade-up">
+        <div class="glow"></div>
+
+        <div class="w-[340px] h-[480px] rounded-[2.5rem] overflow-hidden border border-white/10 bg-white/5 backdrop-blur-md shadow-2xl flex items-center justify-center">
+          <div class="text-center text-white/35 px-10">
+            <p class="uppercase tracking-[0.3em] text-xs mb-4">
+              Add Your Portrait Here
+            </p>
+            <p class="text-sm leading-relaxed">
+              Replace this section with your cinematic black & white portrait.
+            </p>
           </div>
         </div>
-
-        <!-- Right: Portrait -->
-        <div class="hero-portrait">
-          <div class="portrait-glow"></div>
-          <div class="portrait-frame">
-            <img
-              class="portrait-img"
-              src="assets/images/portrait.jpg"
-              alt="Priyanka Kurabet — UI/UX Designer"
-              loading="eager"
-              decoding="async"
-            />
-            <div class="portrait-grain"></div>
-          </div>
-        </div>
-
       </div>
 
-      <!-- Floating Decorative Elements -->
-      <div class="hero-decorative" aria-hidden="true">
-        <div class="hero-deco-line" style="top: 15%; left: 5%; height: 80px;"></div>
-        <div class="hero-deco-line" style="top: 60%; right: 8%; height: 120px;"></div>
-        <div class="hero-deco-line" style="bottom: 20%; left: 15%; height: 60px;"></div>
-        <div class="hero-deco-dot" style="top: 25%; right: 12%;"></div>
-        <div class="hero-deco-dot" style="bottom: 30%; left: 8%;"></div>
-        <div class="hero-deco-dot" style="top: 70%; left: 45%;"></div>
-        <span class="hero-float-text" style="top: 12%; right: 20%;">2026</span>
-        <span class="hero-float-text" style="bottom: 15%; left: 3%;">Portfolio</span>
-        <span class="hero-float-text" style="bottom: 8%; right: 5%;">17.3816° N</span>
-      </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- ─────────────────────────────────────── -->
-    <!-- WORK SECTION                             -->
-    <!-- ─────────────────────────────────────── -->
-    <section id="work" class="section">
-      <div class="work-header">
-        <p class="section-label">Selected Work</p>
-        <h2 class="section-title">Featured Projects</h2>
+  <!-- Projects -->
+  <section id="work" class="px-6 py-28 border-t border-white/5">
+    <div class="max-w-7xl mx-auto">
+
+      <div class="mb-20 fade-up">
+        <p class="uppercase tracking-[0.25em] text-sm text-white/40 mb-4">
+          Selected Work
+        </p>
+
+        <h2 class="text-5xl font-bold">Featured Projects</h2>
       </div>
 
-      <div class="projects-container">
+      <div class="space-y-14">
 
-        <!-- PROJECT 01: Agoda Case Study -->
-        <article class="project-card" data-project="agoda" data-cursor="pointer">
-          <div class="project-inner">
-            <div class="project-image-wrap">
-              <img
-                src="assets/images/agoda.jpg"
-                alt="Agoda Hotel Booking Flow — UX Case Study showing mobile app redesign with hotel search, comparison, and booking screens"
-                loading="lazy"
-                decoding="async"
-              />
-              <div class="project-image-overlay"></div>
+        <!-- Agoda -->
+        <div class="project-card rounded-[2.5rem] border border-white/10 bg-white/[0.03] overflow-hidden fade-up">
+          <div class="grid lg:grid-cols-2 gap-10 p-8 lg:p-12 items-center">
+
+            <div class="h-[320px] rounded-[2rem] bg-gradient-to-br from-white/[0.08] to-white/[0.02] border border-white/5 flex items-center justify-center text-white/30 text-center px-8">
+              Add Agoda project thumbnail here
             </div>
-            <div class="project-info">
-              <span class="project-number" aria-hidden="true">01</span>
-              <h3 class="project-title">Agoda Case Study</h3>
-              <p class="project-description" data-cursor="text">
+
+            <div>
+              <h3 class="text-4xl font-bold mb-6">Agoda Case Study</h3>
+
+              <p class="text-white/60 leading-relaxed text-lg mb-8 max-w-xl">
                 A UX redesign focused on improving usability, booking flow, and overall travel experience.
               </p>
-              <div class="project-tags">
-                <span class="project-tag">UX Case Study</span>
-                <span class="project-tag">Product Thinking</span>
-                <span class="project-tag">Travel Platform</span>
+
+              <div class="flex flex-wrap gap-3 mb-8">
+                <span class="px-4 py-2 rounded-full border border-white/10 text-sm text-white/70">UX Case Study</span>
+                <span class="px-4 py-2 rounded-full border border-white/10 text-sm text-white/70">Product Thinking</span>
+                <span class="px-4 py-2 rounded-full border border-white/10 text-sm text-white/70">Travel Platform</span>
               </div>
+
               <a href="https://www.behance.net/gallery/248068805/From-Search-to-Decision-Agoda-Booking-Flow"
-                 target="_blank"
-                 rel="noopener noreferrer"
-                 class="project-link"
-                 data-cursor="pointer">
-                View Case Study <span class="arrow">→</span>
+                target="_blank"
+                class="text-white/85 hover:text-white transition">
+                View Case Study →
               </a>
             </div>
           </div>
-        </article>
+        </div>
 
-        <!-- PROJECT 02: Smart Budgeting -->
-        <article class="project-card" data-project="budgeting" data-cursor="pointer">
-          <div class="project-inner">
-            <div class="project-image-wrap">
-              <img
-                src="assets/images/smart-budgeting.jpg"
-                alt="Smart Budgeting App — Personal finance mobile app with spending dashboard, goals tracker, and transaction management"
-                loading="lazy"
-                decoding="async"
-              />
-              <div class="project-image-overlay"></div>
+        <!-- Smart Budgeting -->
+        <div class="project-card rounded-[2.5rem] border border-white/10 bg-white/[0.03] overflow-hidden fade-up">
+          <div class="grid lg:grid-cols-2 gap-10 p-8 lg:p-12 items-center">
+
+            <div class="h-[320px] rounded-[2rem] bg-gradient-to-br from-white/[0.08] to-white/[0.02] border border-white/5 flex items-center justify-center text-white/30 text-center px-8">
+              Add Smart Budgeting thumbnail here
             </div>
-            <div class="project-info">
-              <span class="project-number" aria-hidden="true">02</span>
-              <h3 class="project-title">Smart Budgeting</h3>
-              <p class="project-description" data-cursor="text">
+
+            <div>
+              <h3 class="text-4xl font-bold mb-6">Smart Budgeting</h3>
+
+              <p class="text-white/60 leading-relaxed text-lg mb-8 max-w-xl">
                 A modern budgeting experience focused on smarter spending and intuitive financial management.
               </p>
-              <div class="project-tags">
-                <span class="project-tag">Finance UI</span>
-                <span class="project-tag">Mobile App</span>
-                <span class="project-tag">UI/UX</span>
+
+              <div class="flex flex-wrap gap-3 mb-8">
+                <span class="px-4 py-2 rounded-full border border-white/10 text-sm text-white/70">Finance UI</span>
+                <span class="px-4 py-2 rounded-full border border-white/10 text-sm text-white/70">Mobile App</span>
+                <span class="px-4 py-2 rounded-full border border-white/10 text-sm text-white/70">UI/UX</span>
               </div>
+
               <a href="https://www.behance.net/gallery/249686577/Smart-Budgeting-Plan-Smarter-Live-Better"
-                 target="_blank"
-                 rel="noopener noreferrer"
-                 class="project-link"
-                 data-cursor="pointer">
-                View Case Study <span class="arrow">→</span>
+                target="_blank"
+                class="text-white/85 hover:text-white transition">
+                View Case Study →
               </a>
             </div>
           </div>
-        </article>
+        </div>
 
-        <!-- PROJECT 03: SYSTEM.EXE -->
-        <article class="project-card" data-project="system" data-cursor="pointer">
-          <div class="project-inner">
-            <div class="project-image-wrap">
-              <img
-                src="assets/images/system-exe.jpg"
-                alt="SYSTEM.EXE — Experimental psychological puzzle concept app with dark futuristic UI showing welcome, navigation, and access screens"
-                loading="lazy"
-                decoding="async"
-              />
-              <div class="project-image-overlay"></div>
-              <div class="scanlines"></div>
+        <!-- System.exe -->
+        <div class="project-card rounded-[2.5rem] border border-white/10 bg-white/[0.03] overflow-hidden fade-up">
+          <div class="grid lg:grid-cols-2 gap-10 p-8 lg:p-12 items-center">
+
+            <div class="h-[320px] rounded-[2rem] bg-gradient-to-br from-white/[0.08] to-white/[0.02] border border-white/5 flex items-center justify-center text-white/30 text-center px-8">
+              Add SYSTEM.EXE thumbnail here
             </div>
-            <div class="project-info">
-              <span class="project-number" aria-hidden="true">03</span>
-              <h3 class="project-title">SYSTEM.EXE</h3>
-              <p class="project-description" data-cursor="text">
-                An experimental psychological 'phone inside phone' concept exploring suspense and interaction-driven storytelling.
+
+            <div>
+              <h3 class="text-4xl font-bold mb-6">SYSTEM.EXE</h3>
+
+              <p class="text-white/60 leading-relaxed text-lg mb-8 max-w-xl">
+                An experimental psychological ‘phone inside phone’ concept exploring suspense and interaction-driven storytelling.
               </p>
-              <div class="project-tags">
-                <span class="project-tag">Experimental UI</span>
-                <span class="project-tag">Interaction Design</span>
-                <span class="project-tag">Psychological Puzzle</span>
+
+              <div class="flex flex-wrap gap-3 mb-8">
+                <span class="px-4 py-2 rounded-full border border-white/10 text-sm text-white/70">Experimental UI</span>
+                <span class="px-4 py-2 rounded-full border border-white/10 text-sm text-white/70">Interaction Design</span>
+                <span class="px-4 py-2 rounded-full border border-white/10 text-sm text-white/70">Psychological Puzzle</span>
               </div>
+
               <a href="https://www.behance.net/gallery/249762985/Systemexe"
-                 target="_blank"
-                 rel="noopener noreferrer"
-                 class="project-link"
-                 data-cursor="pointer">
-                View Case Study <span class="arrow">→</span>
+                target="_blank"
+                class="text-white/85 hover:text-white transition">
+                View Case Study →
               </a>
             </div>
           </div>
-        </article>
-
-      </div>
-    </section>
-
-    <!-- ─────────────────────────────────────── -->
-    <!-- ABOUT SECTION                            -->
-    <!-- ─────────────────────────────────────── -->
-    <section id="about" class="section">
-      <div class="about-inner">
-        <p class="section-label">About</p>
-
-        <h2 class="about-heading" data-cursor="text">
-          Creating digital experiences that feel immersive, emotional, and visually intentional.
-        </h2>
-
-        <p class="about-body" data-cursor="text">
-          I'm a UI/UX and interactive experience designer focused on blending usability, storytelling, and visual emotion through modern digital experiences.
-        </p>
-
-        <div class="about-portrait">
-          <img
-            src="assets/images/portrait.jpg"
-            alt="Priyanka Kurabet"
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
-      </div>
-    </section>
-
-    <!-- ─────────────────────────────────────── -->
-    <!-- SKILLS SECTION                           -->
-    <!-- ─────────────────────────────────────── -->
-    <section id="skills" class="section">
-      <div class="skills-header">
-        <p class="section-label">Skills</p>
-        <h2 class="section-title">Tools &amp; Expertise</h2>
-      </div>
-
-      <div class="skills-ecosystem">
-
-        <!-- Design Skills -->
-        <div class="skill-category" data-category="design">
-          <span class="category-label" aria-hidden="true">Design</span>
-          <div class="skill-item" data-size="large" data-cursor="pointer">
-            <span class="skill-name">UI/UX Design</span>
-            <span class="skill-context">End-to-end product design</span>
-          </div>
-          <div class="skill-item" data-size="large" data-cursor="pointer">
-            <span class="skill-name">Interaction Design</span>
-            <span class="skill-context">Motion & micro-interactions</span>
-          </div>
-          <div class="skill-item" data-size="medium" data-cursor="pointer">
-            <span class="skill-name">Wireframing</span>
-            <span class="skill-context">Lo-fi to hi-fi flows</span>
-          </div>
-        </div>
-
-        <!-- Tools -->
-        <div class="skill-category" data-category="tools">
-          <span class="category-label" aria-hidden="true">Tools</span>
-          <div class="skill-item" data-size="large" data-cursor="pointer">
-            <span class="skill-name">Figma</span>
-            <span class="skill-context">Primary design tool</span>
-          </div>
-        </div>
-
-        <!-- Development Skills -->
-        <div class="skill-category" data-category="development">
-          <span class="category-label" aria-hidden="true">Code</span>
-          <div class="skill-item" data-size="medium" data-cursor="pointer">
-            <span class="skill-name">HTML</span>
-            <span class="skill-context">Semantic markup</span>
-          </div>
-          <div class="skill-item" data-size="medium" data-cursor="pointer">
-            <span class="skill-name">CSS</span>
-            <span class="skill-context">Styling & animation</span>
-          </div>
-          <div class="skill-item" data-size="small" data-cursor="pointer">
-            <span class="skill-name">Java</span>
-            <span class="skill-context">Application development</span>
-          </div>
-          <div class="skill-item" data-size="small" data-cursor="pointer">
-            <span class="skill-name">DBMS</span>
-            <span class="skill-context">Database management</span>
-          </div>
         </div>
 
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- ─────────────────────────────────────── -->
-    <!-- CONTACT SECTION                          -->
-    <!-- ─────────────────────────────────────── -->
-    <section id="contact" class="section">
-      <div class="contact-inner">
-        <p class="section-label">Contact</p>
+  <!-- About -->
+  <section id="about" class="px-6 py-28 border-t border-white/5 fade-up">
+    <div class="max-w-5xl mx-auto">
+      <p class="uppercase tracking-[0.25em] text-sm text-white/40 mb-4">
+        About
+      </p>
 
-        <h2 class="contact-heading">
-          Let's create something<br />meaningful.
-        </h2>
+      <h2 class="text-5xl font-bold mb-10 leading-tight">
+        Creating digital experiences that feel immersive, emotional, and visually intentional.
+      </h2>
 
-        <p class="contact-body" data-cursor="text">
-          Open to UI/UX, product design, interaction design, and creative tech opportunities.
-        </p>
+      <p class="text-white/60 text-lg leading-relaxed max-w-3xl">
+        I’m a UI/UX and interactive experience designer focused on blending usability, storytelling, and visual emotion through modern digital experiences.
+      </p>
+    </div>
+  </section>
 
-        <div class="contact-links">
-          <a href="https://www.linkedin.com/in/priyanka-kurabet-5b83aa2a7"
-             target="_blank"
-             rel="noopener noreferrer"
-             class="contact-link"
-             data-cursor="pointer">
-            <span class="link-label">LinkedIn</span>
-            <span class="link-arrow">→</span>
-          </a>
-          <a href="https://www.behance.net/priyankakurabet14"
-             target="_blank"
-             rel="noopener noreferrer"
-             class="contact-link"
-             data-cursor="pointer">
-            <span class="link-label">Behance</span>
-            <span class="link-arrow">→</span>
-          </a>
-          <a href="mailto:priyankakurabet141@gmail.com"
-             class="contact-link"
-             data-cursor="pointer">
-            <span class="link-label">Email</span>
-            <span class="link-arrow">→</span>
-          </a>
-        </div>
+  <!-- Skills -->
+  <section id="skills" class="px-6 py-28 border-t border-white/5 fade-up">
+    <div class="max-w-6xl mx-auto">
+      <p class="uppercase tracking-[0.25em] text-sm text-white/40 mb-4">
+        Skills
+      </p>
 
-        <div class="contact-footer">
-          <p>© 2026 Priyanka Kurabet. Crafted with intention.</p>
-        </div>
+      <h2 class="text-5xl font-bold mb-14">Tools & Expertise</h2>
+
+      <div class="flex flex-wrap gap-4">
+        <div class="px-5 py-3 rounded-full border border-white/10">UI/UX Design</div>
+        <div class="px-5 py-3 rounded-full border border-white/10">Interaction Design</div>
+        <div class="px-5 py-3 rounded-full border border-white/10">Wireframing</div>
+        <div class="px-5 py-3 rounded-full border border-white/10">Figma</div>
+        <div class="px-5 py-3 rounded-full border border-white/10">HTML</div>
+        <div class="px-5 py-3 rounded-full border border-white/10">CSS</div>
+        <div class="px-5 py-3 rounded-full border border-white/10">Java</div>
+        <div class="px-5 py-3 rounded-full border border-white/10">DBMS</div>
       </div>
-    </section>
+    </div>
+  </section>
 
-  </main>
+  <!-- Contact -->
+  <section id="contact" class="px-6 py-32 border-t border-white/5 fade-up">
+    <div class="max-w-5xl mx-auto text-center">
+      <p class="uppercase tracking-[0.25em] text-sm text-white/40 mb-5">
+        Contact
+      </p>
 
-  <!-- ═══════════════════════════════════════════ -->
-  <!-- SCRIPTS (CDN + Local Modules)               -->
-  <!-- ═══════════════════════════════════════════ -->
-  <!-- Lenis Smooth Scroll -->
-  <script src="https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.min.js" defer></script>
-  <!-- GSAP Core -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-  <!-- GSAP ScrollTrigger -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
-  <!-- Portfolio Modules -->
-  <script src="js/effects.js" defer></script>
-  <script src="js/cursor.js" defer></script>
-  <script src="js/navigation.js" defer></script>
-  <script src="js/animations.js" defer></script>
-  <script src="js/app.js" defer></script>
+      <h2 class="text-5xl md:text-6xl font-bold leading-tight mb-8">
+        Let’s create something meaningful.
+      </h2>
 
+      <p class="text-white/60 text-lg mb-12 max-w-2xl mx-auto">
+        Open to UI/UX, product design, interaction design, and creative tech opportunities.
+      </p>
+
+      <div class="flex flex-wrap justify-center gap-5">
+        <a href="https://www.linkedin.com/in/priyanka-kurabet-5b83aa2a7"
+          target="_blank"
+          class="px-6 py-3 rounded-full border border-white/10 hover:bg-white/[0.05] transition">
+          LinkedIn
+        </a>
+
+        <a href="https://www.behance.net/priyankakurabet14"
+          target="_blank"
+          class="px-6 py-3 rounded-full border border-white/10 hover:bg-white/[0.05] transition">
+          Behance
+        </a>
+
+        <a href="mailto:priyankakurabet141@gmail.com"
+          class="px-6 py-3 rounded-full border border-white/10 hover:bg-white/[0.05] transition">
+          Email
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    });
+
+    document.querySelectorAll('.fade-up').forEach((el) => {
+      observer.observe(el);
+    });
+  </script>
 </body>
 </html>
